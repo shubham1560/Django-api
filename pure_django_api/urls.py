@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from . import settings
 from django.conf.urls.static import static
-from updates.views import update_model_detail_view
+from updates.views import json_example_view, JsonCBV, JsonCBV2, SerializedView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', update_model_detail_view)
+    path('json/example', json_example_view),
+    path('jsoncbv', JsonCBV.as_view()),
+    path('jsoncbv2', JsonCBV2.as_view()),
+    path('serialize', SerializedView.as_view())
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
